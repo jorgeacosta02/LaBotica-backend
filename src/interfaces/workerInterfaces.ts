@@ -1,6 +1,3 @@
-import { Document } from "mongoose";
-
-
 // Interface for saving worker on db
 export interface IWorkerData extends Document {
     id: string,

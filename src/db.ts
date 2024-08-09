@@ -10,7 +10,7 @@ const sequelize = new Sequelize({
   host: 'localhost',
   username: 'postgres',
   password: 'admin',
-  database: 'admin',
+  database: 'labotica',
   models: [
     ConsortiumUserModel,
     ConsortiumModel,

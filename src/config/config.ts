@@ -2,22 +2,17 @@ import dotenv from 'dotenv';
 
 dotenv.config()
 
-export interface ExploserviceDBType {
+export interface TriarDBType {
     URI: string | undefined;
     USER: string | undefined;
     PASSWORD: string | undefined;
 }
 
 export default {
-    jwtSecret: process.env.JWT_SECRET || 'somesecrettoken',
-    ExploserviceDB: {
-        URI: process.env.EXPLOSERVICE_MONGODB_URI,
-        USER: process.env.EXPLOSERVICE_MONGODB_USER,
-        PASSWORD: process.env.EXPLOSERVICE_MONGODB_PASSWORD
+    jwtSecret: process.env.ACCESS_TOKEN_SECRET || 'triarsecrettoken',
+    TriarDB: {
+        URI: process.env.MONGODB_URI,
+        USER: process.env.MONGODB_USER,
+        PASSWORD: process.env.MONGODB_PASSWORD
     },
-    ExploagroDB: {
-        URI: process.env.EXPLOAGRO_MONGODB_URI || 'mongodb://localhost:27017/exploagro',
-        USER: process.env.EXPLOAGRO_MONGODB_USER,
-        PASSWORD: process.env.EXPLOAGRO_MONGODB_PASSWORD
-    }
 }

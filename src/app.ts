@@ -1,23 +1,21 @@
-import express from 'express';
-import morgan from 'morgan';
+import express from "express";
+import morgan from "morgan";
 import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import router from './routes';
+import cookieParser from "cookie-parser";
+import router from "./routes";
 import dotenv from 'dotenv';
 import './db';
 
 dotenv.config();
-const port = process.env.PORT || 7000;
+const port = process.env.PORT || 4000;
 
-console.log('iniciando servidor')
-
-// initializations
+// Initialization
 const app = express();
 
-// settings
-app.set('port', port);
+// Settings
+app.set('port', port)
 
-// middlewares
+// Middlewares
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
@@ -25,6 +23,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Routes
-app.use('/', router);
+app.use('/', router)
 
-export default  app;
+export default app
+

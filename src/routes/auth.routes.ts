@@ -1,16 +1,31 @@
 import { Router } from 'express';
-import userRegisterController from '../controllers/authcontrollers/userRegisterController';
-import userLogInController from '../controllers/authcontrollers/userLoginController';
-import userLogOutController from '../controllers/authcontrollers/userLogoutController';
-import userProfileController from '../controllers/authcontrollers/userProfileController';
- 
-import { authRequired } from '../middlewares/validate.token'
+import userRegisterController from '../controllers/authControllers/userControllers/userRegisterController';
+import userLogInController from '../controllers/authControllers/userControllers/userLoginController';
+import userLogOutController from '../controllers/authControllers/userControllers/userLogoutController';
+import userProfileController from '../controllers/authControllers/userControllers/userProfileController';
+import { userAuthRequired } from '../middlewares/userValidate.token'
+import consortiumRegisterController from '../controllers/authControllers/consortiumControllers/consortiumRegisterController';
+import projectRegisterController from '../controllers/authControllers/projectControllers/projectRegisterController';
+import minuteRegisterController from '../controllers/authControllers/minutesContrllers/minuteRegisterController';
+import consortiumGetAllController from '../controllers/authControllers/consortiumControllers/consortiumGetAllController';
+
 
 const authRoutes = Router();
 
-authRoutes.post('/register', userRegisterController);
-authRoutes.post('/login', userLogInController);
-authRoutes.post('/logout', userLogOutController);
-authRoutes.get('/profile', authRequired, userProfileController);
+// UserRoutes
+authRoutes.post('/user-register', userRegisterController);
+authRoutes.post('/user-login', userLogInController);
+authRoutes.post('/user-logout', userLogOutController);
+authRoutes.get('/user-profile', userAuthRequired, userProfileController);
+
+// ConsortiumRoutes
+authRoutes.post('/consortium-register', consortiumRegisterController);
+authRoutes.get('/consortium-get-all', consortiumGetAllController);
+
+// ProjectRoutes
+authRoutes.post('/project-register', projectRegisterController);
+
+// MinuteRoutes
+authRoutes.post('/minute-register', minuteRegisterController);
 
 export default authRoutes

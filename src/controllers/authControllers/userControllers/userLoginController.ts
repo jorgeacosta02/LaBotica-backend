@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { UserModel } from "../../models/UserModel";;
+import { UserModel } from "../../../models/UserModel";
 import bcrypt from 'bcrypt';
-import { createToken } from "../../libs/jwt";
-import { ITokenUserData } from "../../interfaces/userInterfaces";
+import { createUserToken } from "../../../libs/jwt";
+import { ITokenUserData } from "../../../Interfaces/userInterfaces";
 
 
 const userLogInController = async (req: Request, res: Response) => {
@@ -15,10 +15,10 @@ const userLogInController = async (req: Request, res: Response) => {
     };
 
     try {
-        // busco el ususario en la db por email
+        // busco el ususario en la db por dni
         const user = await UserModel.findOne({
             where: {
-              dni // Ajusta esto según tus necesidades
+              dni
             },
         });
         // envío mensaje de error si no se encuenta el usuario 
@@ -39,16 +39,15 @@ const userLogInController = async (req: Request, res: Response) => {
             dni: user.dni,
             phone: user.phone,
             email: user.email,
-            // position: user.position,
             active: user.active,
             role: user.role
         }
         console.log('tokenData en loginController', tokenData);
         // Creo un token para el usuario usando la función de libs/jwt
-        const token = await createToken(tokenData);
+        const token = await createUserToken(tokenData);
         console.log('token en loginController', token);
         // Coloco una cookie con el token en la respuesta
-        // res.cookie('token', token);
+        res.cookie('token', token);
 
 
         // Envío la respuesta de éxito al cliente

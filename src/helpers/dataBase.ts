@@ -1,155 +1,147 @@
-import { ArticleModel } from "../models/articleModel";
-import { InventoryModel } from "../models/inventoryModel";
-import { InventoryMovementModel } from "../models/inventoryMovementModel";
-import { LocationModel } from "../models/locationModel";
+import { ConsortiumModel } from "../models/ConsortiumModel";
+import { MinuteModel } from "../models/MinuteModel";
+import { ProjectModel } from "../models/ProjectModel";
 import { UserModel } from "../models/UserModel";
+import { ConsortiumUserModel } from "../models/ConsortiumUserModel";
+import bcrypt from 'bcrypt';
 
 const dataBase = async () => {
+    
+    
+        // Consortiums
+        const consortiums = [
+            {
+                name: 'c1',
+                address: 'address1',
+                active: true,
+            },
+            {
+                name: 'c2',
+                address: 'address2',
+                active: true,
+            },
+        ]
+    
+        const insertedConsortiums:any = await ConsortiumModel.bulkCreate(consortiums);
+    
+        console.log(insertedConsortiums);
+    
+        const consortiumsFromDB:any = await ConsortiumModel.findAll();
 
 
-
-    // Registros de artículos
-    const articles = [
-        {
-            name: 'Barra perf',
-            brand: 'Sandivk',
-            group1: 'T38',
-            group2: '6m',
-        },
-        {
-            name: 'Barra perf',
-            brand: 'FRD',
-            group1: 'T45',
-            group2: '2m',
-        },
-        {
-            name: 'Barra ini',
-            brand: 'Sandvik',
-            group1: 'T51',
-            group2: '',
-        },
-        {
-            name: 'Barra ini',
-            brand: 'FRD',
-            group1: 'T45',
-            group2: '',
-        },
-        {
-            name: 'Broca',
-            brand: 'Sandvik',
-            group1: 'T45',
-            group2: 'Lisa',
-        },
-        {
-            name: 'Broca',
-            brand: 'Atlas',
-            group1: 'T38',
-            group2: 'Estriada',
-        },
-        {
-            name: 'Fil aire',
-            brand: 'filt',
-            group1: 'x29',
-            group2: 'www',
-        },
-      
-    ];
-
-    const insertedArticles:any = await ArticleModel.bulkCreate(articles);
-
-
-    // Registros de locaciones
-    const locations = [
-        {
-            name: 'Central',
-            description: 'Albardón'
-        },
-        {
-            name: 'Prveedor',
-            description: ''
-        },
-        {
-            name: 'Descarte',
-            description: ''
-        },
-        {
-            name: 'Tocota',
-            description: ''
-        },
-        {
-            name: 'Barker',
-            description: ''
-        },
-        {
-            name: 'La Garrapata',
-            description: ''
-        },
-    ];
-
-    const insertedLocations:any = await LocationModel.bulkCreate(locations);
-
-
+    // Users
     const users = [
         {
-            firstName: '1',
-            lastName: 'Acosta',
-            dni: '23616110',
-            // birthDate,
+            firstName: 'admin',
+            lastName: 'admin',
+            dni: '1',
             phone: '2646730581',
-            email: 'jorgeacostadeleon@yahoo.com',
-            password: '123456',
+            email: '1@yahoo.com',
+            plot: '',
+            password: '1',
+            role: 'admin',
             active: true,
+        },
+        {
+            firstName: '2',
+            lastName: '2',
+            dni: '22',
+            phone: '2222',
+            email: '2@yahoo.com',
+            plot: '2',
+            password: '2',
             role: 'user',
+            active: true,
+        },
+        {
+            firstName: '3',
+            lastName: '3',
+            dni: '33',
+            phone: '3333',
+            email: '3@yahoo.com',
+            plot: '1',
+            password: '3',
+            role: 'user',
+            active: true,
+        },
+        {
+            firstName: '4',
+            lastName: '4',
+            dni: '44',
+            phone: '4444',
+            email: '4@yahoo.com',
+            plot: '4',
+            password: '4',
+            role: 'user',
+            active: true,
         },
     ]
 
 
-    const insertedUsers:any = await UserModel.bulkCreate(users);
+    const hashedUsers = await Promise.all(users.map(async (user) => {
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(user.password, salt);
+        return {
+            ...user,
+            password: hash
+        };
+    }));
 
-    // Registros de movimientos de inventario
-    // const inventoryMovement:any = [
-    //     {
-    //         movementType: 'entrada',
-    //         quantity: 10,
-    //         articleId: insertedArticles[0].id,
-    //         originLocationId: insertedLocations[1].id,
-    //         destinationLocationId: insertedLocations[0].id
-    //     },
-    //     {
-    //         movementType: 'transferencia',
-    //         quantity: 2,
-    //         articleId: insertedArticles[0].id,
-    //         originLocationId: insertedLocations[0].id,
-    //         destinationLocationId: insertedLocations[3].id
-    //     },
-    //     {
-    //         movementType: 'transferencia',
-    //         quantity: 3,
-    //         articleId: insertedArticles[0].id,
-    //         originLocationId: insertedLocations[0].id,
-    //         destinationLocationId: insertedLocations[4].id
-    //     },
-    //     {
-    //         movementType: 'transferencia',
-    //         quantity: 1,
-    //         articleId: insertedArticles[0].id,
-    //         originLocationId: insertedLocations[3].id,
-    //         destinationLocationId: insertedLocations[5].id
-    //     },
-    // ];
-
-    // const insertedInventoryMovements:any = await InventoryMovementModel.bulkCreate(inventoryMovement);
-
-
+    const insertedUsers:any = await UserModel.bulkCreate(hashedUsers);
     
+    console.log(insertedUsers);
 
-    // Inventory
+
+    // Associate users with consortiums
+    const consortiumUserAssociationsOne = insertedUsers.slice(0,2).map((user: any) => ({
+        consortiumId: consortiumsFromDB[0].id,
+        userId: user.id,
+    }));
+
+    const insertedConsortiumUsersOne: any = await ConsortiumUserModel.bulkCreate(consortiumUserAssociationsOne);
+    console.log(insertedConsortiumUsersOne);
+
+    const consortiumUserAssociationsTwo = insertedUsers.slice(2).map((user: any) => ({
+        consortiumId: consortiumsFromDB[1].id,
+        userId: user.id,
+    }));
+
+    const insertedConsortiumUsersTwo: any = await ConsortiumUserModel.bulkCreate(consortiumUserAssociationsTwo);
+    console.log(insertedConsortiumUsersTwo);
 
 
-      
-    // console.log("Registros de artículo insertados correctamente:", insertedArticles);
-    // console.log("Registros de locaciones insertados correctamente:", insertedLocations);
-    // console.log("Registros de movimientos insertados correctamente:", insertedInventoryMovements);
+    // Projects
+    const projects = [
+        {
+            proposalDate: '01-06-2024',
+            title: 'Proyect 1',
+            description: 'descripción 1',
+            startDate: '15-07-2024',
+            endDate: '20-07-2024',
+            consortiumId: consortiumsFromDB[0].id,
+            active: true,
+        },
+    ]
+
+    const insertedProjects:any = await ProjectModel.bulkCreate(projects);
+    
+    console.log(insertedProjects);
+
+
+    // Minutes
+    const minutes = [
+        {
+            date: '01-07-2024',
+            title: 'Acta 1',
+            text: 'texto del acta 1',
+            consortiumId: consortiumsFromDB[0].id,
+            active: true,
+        },
+    ]
+
+    const insertedMinutes:any = await MinuteModel.bulkCreate(minutes);
+    
+    console.log(insertedMinutes);
 
 };
 

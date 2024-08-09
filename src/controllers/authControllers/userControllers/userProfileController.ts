@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { UserModel } from "../../models/UserModel";
-import { IUserDataFromDB } from "../../interfaces/userInterfaces";
+import { UserModel } from "../../../models/UserModel";
+import { IUserDataFromDB } from "../../../Interfaces/userInterfaces";
 
 
 const userProfileController = async (req: Request, res: Response) => {

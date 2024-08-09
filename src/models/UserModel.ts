@@ -5,7 +5,10 @@ import {
   PrimaryKey,
   Default,
   DataType,
+  BelongsToMany,
 } from 'sequelize-typescript';
+import { ConsortiumUserModel } from './ConsortiumUserModel';
+import { ConsortiumModel } from './ConsortiumModel';
 
 @Table({ tableName: 'users' })
 export class UserModel extends Model {
@@ -20,10 +23,19 @@ export class UserModel extends Model {
 
   @Column
   firstName!: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    defaultValue: '',
+  })
+  consortium_Id!: string;
+
   @Column
   lastName!: string;
+
   @Column({
-    type: DataType.INTEGER, // Ajusta el tipo según lo que uses para DNI
+    type: DataType.STRING,
     allowNull: false,
   })
   dni!: string;
@@ -35,18 +47,25 @@ export class UserModel extends Model {
   email!: string;
 
   @Column
+  plot!: string;
+
+  @Column
   password!: string;
 
-  @Column
-  position!: string;
-
-  @Column
-  active!: boolean;
-  
-  @Column
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    defaultValue: 'user',
+  })
   role!: string;
 
-  // Otros campos y decoradores según tu modelo
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
+  })
+  active!: boolean;
+
+  @BelongsToMany(() => ConsortiumModel, () => ConsortiumUserModel)
+  consortiums!: ConsortiumModel[];
 }
-
-

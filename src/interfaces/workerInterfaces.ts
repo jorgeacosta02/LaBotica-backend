@@ -1,20 +1,8 @@
+import { Document } from "mongoose";
 
-// Interface for saving user on db
-export interface IUserData extends Document {
-    id: string,
-    firstName: string;
-    lastName: string;
-    dni: string;
-    phone: string;
-    email: string;
-    plot: string;
-    password: string;
-    role: string;
-    active: boolean;
-}
 
-// Interface user from db
-export interface IUserDataFromDB {
+// Interface for saving worker on db
+export interface IWorkerData extends Document {
     id: string,
     firstName: string;
     lastName: string;
@@ -26,8 +14,21 @@ export interface IUserDataFromDB {
     role: string;
 }
 
-// Interface for register user
-export interface IRegisterData {
+// Interface worker from db
+export interface IWorkerDataFromDB {
+    id: string,
+    firstName: string;
+    lastName: string;
+    dni: string;
+    phone: string;
+    email: string;
+    password: string;
+    active: boolean;
+    role: string;
+}
+
+// Interface for register worker
+export interface IWorkerRegisterData {
     firstName: string;
     lastName: string;
     dni: string;
@@ -44,12 +45,12 @@ export interface ILoginData {
 
 // ApiResponse
 export interface ApiResponse {
-    user: IUserData;
+    user: IWorkerData;
     message: string;
 }
 
-// tokenInterface 'user'
-export interface ITokenUserData {
+// tokenInterface 'worker'
+export interface ITokenWorkerData {
     id: string;
     firstName: string;
     lastName: string;

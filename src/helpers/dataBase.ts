@@ -1,33 +1,9 @@
-import { ConsortiumModel } from "../models/ConsortiumModel";
 import { MinuteModel } from "../models/MinuteModel";
-import { ProjectModel } from "../models/ProjectModel";
+import { ProductModel } from "../models/ProductModel";
 import { UserModel } from "../models/UserModel";
-import { ConsortiumUserModel } from "../models/ConsortiumUserModel";
 import bcrypt from 'bcrypt';
 
 const dataBase = async () => {
-    
-    
-        // Consortiums
-        const consortiums = [
-            {
-                name: 'c1',
-                address: 'address1',
-                active: true,
-            },
-            {
-                name: 'c2',
-                address: 'address2',
-                active: true,
-            },
-        ]
-    
-        const insertedConsortiums:any = await ConsortiumModel.bulkCreate(consortiums);
-    
-        console.log(insertedConsortiums);
-    
-        const consortiumsFromDB:any = await ConsortiumModel.findAll();
-
 
     // Users
     const users = [
@@ -37,7 +13,6 @@ const dataBase = async () => {
             dni: '1',
             phone: '2646730581',
             email: '1@yahoo.com',
-            plot: '',
             password: '1',
             role: 'admin',
             active: true,
@@ -48,7 +23,6 @@ const dataBase = async () => {
             dni: '22',
             phone: '2222',
             email: '2@yahoo.com',
-            plot: '2',
             password: '2',
             role: 'user',
             active: true,
@@ -59,7 +33,6 @@ const dataBase = async () => {
             dni: '33',
             phone: '3333',
             email: '3@yahoo.com',
-            plot: '1',
             password: '3',
             role: 'user',
             active: true,
@@ -70,7 +43,6 @@ const dataBase = async () => {
             dni: '44',
             phone: '4444',
             email: '4@yahoo.com',
-            plot: '4',
             password: '4',
             role: 'user',
             active: true,
@@ -92,56 +64,30 @@ const dataBase = async () => {
     console.log(insertedUsers);
 
 
-    // Associate users with consortiums
-    const consortiumUserAssociationsOne = insertedUsers.slice(0,2).map((user: any) => ({
-        consortiumId: consortiumsFromDB[0].id,
-        userId: user.id,
-    }));
-
-    const insertedConsortiumUsersOne: any = await ConsortiumUserModel.bulkCreate(consortiumUserAssociationsOne);
-    console.log(insertedConsortiumUsersOne);
-
-    const consortiumUserAssociationsTwo = insertedUsers.slice(2).map((user: any) => ({
-        consortiumId: consortiumsFromDB[1].id,
-        userId: user.id,
-    }));
-
-    const insertedConsortiumUsersTwo: any = await ConsortiumUserModel.bulkCreate(consortiumUserAssociationsTwo);
-    console.log(insertedConsortiumUsersTwo);
-
-
-    // Projects
-    const projects = [
+    // Products
+    const products = [
         {
-            proposalDate: '01-06-2024',
-            title: 'Proyect 1',
+            name: 'Producto 1',
             description: 'descripción 1',
-            startDate: '15-07-2024',
-            endDate: '20-07-2024',
-            consortiumId: consortiumsFromDB[0].id,
+            unit: 'grs.',
+            price: '1000',
+            stock: 100,
             active: true,
         },
-    ]
-
-    const insertedProjects:any = await ProjectModel.bulkCreate(projects);
-    
-    console.log(insertedProjects);
-
-
-    // Minutes
-    const minutes = [
         {
-            date: '01-07-2024',
-            title: 'Acta 1',
-            text: 'texto del acta 1',
-            consortiumId: consortiumsFromDB[0].id,
+            name: 'Producto 2',
+            description: 'descripción 2',
+            unit: 'grs.',
+            price: '2000',
+            stock: 200,
             active: true,
         },
     ]
 
-    const insertedMinutes:any = await MinuteModel.bulkCreate(minutes);
+    const insertedProducts:any = await ProductModel.bulkCreate(products);
     
-    console.log(insertedMinutes);
+    console.log(insertedProducts);
+
 
 };
 

@@ -7,8 +7,7 @@ import {
   DataType,
   BelongsToMany,
 } from 'sequelize-typescript';
-import { ConsortiumUserModel } from './ConsortiumUserModel';
-import { ConsortiumModel } from './ConsortiumModel';
+
 
 @Table({ tableName: 'users' })
 export class UserModel extends Model {
@@ -23,13 +22,6 @@ export class UserModel extends Model {
 
   @Column
   firstName!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    defaultValue: '',
-  })
-  consortium_Id!: string;
 
   @Column
   lastName!: string;
@@ -47,9 +39,6 @@ export class UserModel extends Model {
   email!: string;
 
   @Column
-  plot!: string;
-
-  @Column
   password!: string;
 
   @Column({
@@ -65,7 +54,4 @@ export class UserModel extends Model {
     defaultValue: true,
   })
   active!: boolean;
-
-  @BelongsToMany(() => ConsortiumModel, () => ConsortiumUserModel)
-  consortiums!: ConsortiumModel[];
 }

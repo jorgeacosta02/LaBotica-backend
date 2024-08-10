@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ProjectModel } from "../../../models/ProjectModel";
+import { ProjectModel } from "../../../models/ProductModel";
 import { UserModel } from "../../../models/UserModel";
 
 

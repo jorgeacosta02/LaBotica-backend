@@ -10,7 +10,7 @@ import {
 } from 'sequelize-typescript';
 import { ConsortiumUserModel } from './ConsortiumUserModel';
 import { UserModel } from './UserModel';
-import { ProjectModel } from './ProjectModel';
+import { ProjectModel } from './ProductModel';
 import { MinuteModel } from './MinuteModel';
 
 @Table({ tableName: 'consortium' })

@@ -1,3 +1,4 @@
+
 import {
     Model,
     Column,
@@ -8,10 +9,10 @@ import {
     ForeignKey,
     BelongsTo,
   } from 'sequelize-typescript';
-  import { ConsortiumModel } from './ConsortiumModel';
+
   
-  @Table({ tableName: 'project' })
-  export class ProjectModel extends Model {
+  @Table({ tableName: 'product' })
+  export class ProductModel extends Model {
     @PrimaryKey
     @Default(DataType.UUIDV4)
     @Column({
@@ -20,21 +21,21 @@ import {
       allowNull: false,
     })
     id!: any;
-  
-    @Column
-    proposalDate!: string;
 
     @Column
-    title!: string;
+    name!: string;
  
     @Column
     description!: string;
 
     @Column
-    startDate!: string;
+    unit!: string;
 
     @Column
-    endDate!: string;
+    price!: string;
+
+    @Column
+    stock!: DataType.INT
 
     @Column({
       type: DataType.BOOLEAN,
@@ -43,15 +44,7 @@ import {
     })
     active!: boolean;
 
-    @ForeignKey(() => ConsortiumModel)
-    @Column({
-      type: DataType.UUID,
-      allowNull: false,
-    })
-    consortiumId!: string;
 
-    @BelongsTo(() => ConsortiumModel)
-    consortium!: ConsortiumModel;
   }
   
   

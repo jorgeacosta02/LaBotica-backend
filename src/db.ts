@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 import { UserModel } from './models/UserModel';
-import { ProjectModel } from './models/ProjectModel';
+import { ProjectModel } from './models/ProductModel';
 import { ConsortiumModel } from './models/ConsortiumModel';
 import { MinuteModel } from './models/MinuteModel';
 import { ConsortiumUserModel } from './models/ConsortiumUserModel';

@@ -1,13 +1,12 @@
 
 // Interface for saving user on db
 export interface IUserData extends Document {
-    id: string,
+    // id: string,
     firstName: string;
     lastName: string;
     dni: string;
     phone: string;
     email: string;
-    plot: string;
     password: string;
     role: string;
     active: boolean;
@@ -22,8 +21,8 @@ export interface IUserDataFromDB {
     phone: string;
     email: string;
     password: string;
-    active: boolean;
     role: string;
+    active: boolean;
 }
 
 // Interface for register user
@@ -38,7 +37,7 @@ export interface IRegisterData {
 
 // LOGIN
 export interface ILoginData {
-    dni: string;
+    email: string;
     password: string;
   }
 
@@ -56,7 +55,7 @@ export interface ITokenUserData {
     dni: string;
     phone: string;
     email: string;
-    active: boolean;
     role: string;
+    active: boolean;
 }
   

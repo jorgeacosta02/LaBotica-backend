@@ -35,7 +35,7 @@ import {
     price!: string;
 
     @Column
-    stock!: DataType.INT
+    stock!: number;
 
     @Column({
       type: DataType.BOOLEAN,

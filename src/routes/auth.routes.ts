@@ -3,11 +3,9 @@ import userRegisterController from '../controllers/authControllers/userControlle
 import userLogInController from '../controllers/authControllers/userControllers/userLoginController';
 import userLogOutController from '../controllers/authControllers/userControllers/userLogoutController';
 import userProfileController from '../controllers/authControllers/userControllers/userProfileController';
+import productRegisterController from '../controllers/authControllers/productControllers/productRegisterController';
 import { userAuthRequired } from '../middlewares/userValidate.token'
-import consortiumRegisterController from '../controllers/authControllers/consortiumControllers/consortiumRegisterController';
-import projectRegisterController from '../controllers/authControllers/projectControllers/projectRegisterController';
-import minuteRegisterController from '../controllers/authControllers/minutesContrllers/minuteRegisterController';
-import consortiumGetAllController from '../controllers/authControllers/consortiumControllers/consortiumGetAllController';
+
 
 
 const authRoutes = Router();
@@ -18,14 +16,8 @@ authRoutes.post('/user-login', userLogInController);
 authRoutes.post('/user-logout', userLogOutController);
 authRoutes.get('/user-profile', userAuthRequired, userProfileController);
 
-// ConsortiumRoutes
-authRoutes.post('/consortium-register', consortiumRegisterController);
-authRoutes.get('/consortium-get-all', consortiumGetAllController);
+// ProductRoutes
+authRoutes.post('/product-register', productRegisterController);
 
-// ProjectRoutes
-authRoutes.post('/project-register', projectRegisterController);
-
-// MinuteRoutes
-authRoutes.post('/minute-register', minuteRegisterController);
 
 export default authRoutes

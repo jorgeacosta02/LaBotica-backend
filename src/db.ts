@@ -1,9 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 import { UserModel } from './models/UserModel';
-import { ProjectModel } from './models/ProductModel';
-import { ConsortiumModel } from './models/ConsortiumModel';
-import { MinuteModel } from './models/MinuteModel';
-import { ConsortiumUserModel } from './models/ConsortiumUserModel';
+import { ProductModel } from './models/ProductModel';
 
 const sequelize = new Sequelize({
   dialect: 'postgres',
@@ -12,11 +9,10 @@ const sequelize = new Sequelize({
   password: 'admin',
   database: 'labotica',
   models: [
-    ConsortiumUserModel,
-    ConsortiumModel,
+
     UserModel,
-    ProjectModel,
-    MinuteModel
+    ProductModel,
+
   ],
   logging: false
   

@@ -1,4 +1,3 @@
-import { MinuteModel } from "../models/MinuteModel";
 import { ProductModel } from "../models/ProductModel";
 import { UserModel } from "../models/UserModel";
 import bcrypt from 'bcrypt';

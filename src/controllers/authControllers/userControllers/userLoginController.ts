@@ -8,17 +8,17 @@ import { ITokenUserData } from "../../../Interfaces/userInterfaces";
 const userLogInController = async (req: Request, res: Response) => {
     console.log('res.cookie: ', res.cookie);
     // Destructuro los datos de la request
-    const {dni, password} = req.body;
+    const {email, password} = req.body;
     // Veirifico que estén todos los datos necesarios
-    if(!dni || !password){
-        return res.status(400).json({msg: 'Por favor envíe su dni y contraseña.'});
+    if(!email || !password){
+        return res.status(400).json({msg: 'Por favor envíe su email y contraseña.'});
     };
 
     try {
         // busco el ususario en la db por dni
         const user = await UserModel.findOne({
             where: {
-              dni
+              email
             },
         });
         // envío mensaje de error si no se encuenta el usuario 
@@ -39,8 +39,8 @@ const userLogInController = async (req: Request, res: Response) => {
             dni: user.dni,
             phone: user.phone,
             email: user.email,
+            role: user.role,
             active: user.active,
-            role: user.role
         }
         console.log('tokenData en loginController', tokenData);
         // Creo un token para el usuario usando la función de libs/jwt

@@ -20,13 +20,13 @@ const userRegisterController = async (req: Request, res: Response) => {
     if(!lastName ) return res.status(400).json({msg: 'Por favor envíe su apellido.'});
     console.log(dni)
     if(!dni ) return res.status(400).json({msg: 'Por favor envíe su dni.'});
-    if(!email ) return res.status(400).json({msg: 'Por favor envíe su nombre correo.'});
+    if(!email ) return res.status(400).json({msg: 'Por favor envíe su correo electrónico.'});
     if(!password ) return res.status(400).json({msg: 'Por favor envíe su contraseña.'});
 
     // user check
     const user = await UserModel.findOne({
         where:{
-            dni:dni
+            email
         }
     });
 
@@ -65,8 +65,8 @@ const userRegisterController = async (req: Request, res: Response) => {
             dni: savedUser.dni,
             phone: savedUser.phone,
             email: savedUser.email,
+            role: savedUser.role,
             active: savedUser.active,
-            role: savedUser.role
         });
 
         // Coloco una cookie con el token en la respuesta

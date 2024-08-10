@@ -81,6 +81,38 @@ const dataBase = async () => {
             stock: 200,
             active: true,
         },
+        {
+            name: 'Producto 3',
+            description: 'descripción 3',
+            unit: 'grs.',
+            price: '3000',
+            stock: 300,
+            active: true,
+        },
+        {
+            name: 'Producto 4',
+            description: 'descripción 4',
+            unit: 'grs.',
+            price: '4000',
+            stock: 400,
+            active: true,
+        },
+        {
+            name: 'Producto 5',
+            description: 'descripción 5',
+            unit: 'grs.',
+            price: '5000',
+            stock: 500,
+            active: true,
+        },
+        {
+            name: 'Producto 6',
+            description: 'descripción 6',
+            unit: 'grs.',
+            price: '6000',
+            stock: 600,
+            active: true,
+        },
     ]
 
     const insertedProducts:any = await ProductModel.bulkCreate(products);

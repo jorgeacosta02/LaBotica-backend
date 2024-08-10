@@ -1,28 +1,25 @@
 import { Request, Response } from "express";
-import { ProjectModel } from "../../../models/ProductModel";
+import { ProductModel } from "../../../models/ProductModel";
 import { UserModel } from "../../../models/UserModel";
 
 
-const projectRegisterController = async (req: Request, res: Response) => {
+const productRegisterController = async (req: Request, res: Response) => {
     
     const {
-        proposalDate,
-        title,
+        name,
         description,
-        dni,
+        unit,
+        price,
+        id,
     } = req.body;
 
     // validations    
-    if(!proposalDate ) return res.status(400).json({msg: 'Por favor envíe fecha de proposición.'});
-    if(!title ) return res.status(400).json({msg: 'Por favor enfíe título del acta.'});
-    if(!description ) return res.status(400).json({msg: 'Por favor enfíe texto del acta.'});
+    if(!name ) return res.status(400).json({msg: 'Por favor envíe nombre del producto.'});
+    if(!unit ) return res.status(400).json({msg: 'Por favor envíe unidad de medida del producto.'});
+
 
     // user check
-    const user = await UserModel.findOne({
-        where:{
-            dni:dni
-        }
-    });
+    const user = await UserModel.findByPk(id);
 
     // if user does not exists
     if(!user){
@@ -43,18 +40,19 @@ const projectRegisterController = async (req: Request, res: Response) => {
     try {
 
         // Create new consortium
-        const newProject = new ProjectModel ({
-            proposalDate,
-            title,
+        const newProduct = new ProductModel ({
+            name,
             description,
+            unit,
+            price,
         });
         
-        // Save the consortium and put it in a variable.
-        const savedProject = await newProject.save();
+        // Save the product and put it in a variable.
+        const savedProduct = await newProduct.save();
 
         // Send successful response to client.
         res.status(201).json(
-            `El proyecto ${savedProject.title} fue creado con éxito!!`
+            `El proyecto ${savedProduct.name} fue creado con éxito!!`
         );
     } catch (error: any) {
         
@@ -63,4 +61,4 @@ const projectRegisterController = async (req: Request, res: Response) => {
     }
 }
 
-export default projectRegisterController
+export default productRegisterController

@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 import { UserModel } from './models/UserModel';
-import { ProductModel } from './models/ProductModel';
+import { ArticleModel } from './models/ArticleModel';
 
 const sequelize = new Sequelize({
   dialect: 'postgres',
@@ -11,7 +11,7 @@ const sequelize = new Sequelize({
   models: [
 
     UserModel,
-    ProductModel,
+    ArticleModel,
 
   ],
   logging: false

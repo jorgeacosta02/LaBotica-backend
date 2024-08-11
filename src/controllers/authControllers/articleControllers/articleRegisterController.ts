@@ -1,15 +1,16 @@
 import { Request, Response } from "express";
-import { ProductModel } from "../../../models/ProductModel";
+import { ArticleModel } from "../../../models/ArticleModel";
 import { UserModel } from "../../../models/UserModel";
 
 
-const productRegisterController = async (req: Request, res: Response) => {
+const articleRegisterController = async (req: Request, res: Response) => {
     
     const {
         name,
         description,
         unit,
         price,
+        image,
         id,
     } = req.body;
 
@@ -40,19 +41,20 @@ const productRegisterController = async (req: Request, res: Response) => {
     try {
 
         // Create new consortium
-        const newProduct = new ProductModel ({
+        const newArticle = new ArticleModel ({
             name,
             description,
             unit,
             price,
+            image,
         });
         
         // Save the product and put it in a variable.
-        const savedProduct = await newProduct.save();
+        const savedArticle = await newArticle.save();
 
         // Send successful response to client.
         res.status(201).json(
-            `El proyecto ${savedProduct.name} fue creado con éxito!!`
+            `El artículo ${savedArticle.name} fue creado con éxito!!`
         );
     } catch (error: any) {
         
@@ -61,4 +63,4 @@ const productRegisterController = async (req: Request, res: Response) => {
     }
 }
 
-export default productRegisterController
+export default articleRegisterController

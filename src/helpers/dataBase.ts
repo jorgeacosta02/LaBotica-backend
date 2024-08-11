@@ -1,4 +1,4 @@
-import { ProductModel } from "../models/ProductModel";
+import { ArticleModel } from "../models/ArticleModel";
 import { UserModel } from "../models/UserModel";
 import bcrypt from 'bcrypt';
 
@@ -63,10 +63,10 @@ const dataBase = async () => {
     console.log(insertedUsers);
 
 
-    // Products
-    const products = [
+    // Articles
+    const articles = [
         {
-            name: 'Producto 1',
+            name: 'Artículo 1',
             description: 'descripción 1',
             unit: 'grs.',
             price: '1000',
@@ -74,7 +74,7 @@ const dataBase = async () => {
             active: true,
         },
         {
-            name: 'Producto 2',
+            name: 'Artículo 2',
             description: 'descripción 2',
             unit: 'grs.',
             price: '2000',
@@ -82,7 +82,7 @@ const dataBase = async () => {
             active: true,
         },
         {
-            name: 'Producto 3',
+            name: 'Artículo 3',
             description: 'descripción 3',
             unit: 'grs.',
             price: '3000',
@@ -90,7 +90,7 @@ const dataBase = async () => {
             active: true,
         },
         {
-            name: 'Producto 4',
+            name: 'Artículo 4',
             description: 'descripción 4',
             unit: 'grs.',
             price: '4000',
@@ -98,7 +98,7 @@ const dataBase = async () => {
             active: true,
         },
         {
-            name: 'Producto 5',
+            name: 'Artículo 5',
             description: 'descripción 5',
             unit: 'grs.',
             price: '5000',
@@ -106,7 +106,7 @@ const dataBase = async () => {
             active: true,
         },
         {
-            name: 'Producto 6',
+            name: 'Artículo 6',
             description: 'descripción 6',
             unit: 'grs.',
             price: '6000',
@@ -115,7 +115,7 @@ const dataBase = async () => {
         },
     ]
 
-    const insertedProducts:any = await ProductModel.bulkCreate(products);
+    const insertedProducts:any = await ArticleModel.bulkCreate(articles);
     
     console.log(insertedProducts);
 

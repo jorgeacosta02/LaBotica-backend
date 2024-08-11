@@ -3,7 +3,7 @@ import userRegisterController from '../controllers/authControllers/userControlle
 import userLogInController from '../controllers/authControllers/userControllers/userLoginController';
 import userLogOutController from '../controllers/authControllers/userControllers/userLogoutController';
 import userProfileController from '../controllers/authControllers/userControllers/userProfileController';
-import productRegisterController from '../controllers/authControllers/productControllers/productRegisterController';
+import articleRegisterController from '../controllers/authControllers/articleControllers/articleRegisterController';
 import { userAuthRequired } from '../middlewares/userValidate.token'
 
 
@@ -17,7 +17,7 @@ authRoutes.post('/user-logout', userLogOutController);
 authRoutes.get('/user-profile', userAuthRequired, userProfileController);
 
 // ProductRoutes
-authRoutes.post('/product-register', productRegisterController);
+authRoutes.post('/article-register', articleRegisterController);
 
 
 export default authRoutes

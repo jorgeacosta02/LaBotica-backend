@@ -12,7 +12,7 @@ import {
 
   
   @Table({ tableName: 'product' })
-  export class ProductModel extends Model {
+  export class ArticleModel extends Model {
     @PrimaryKey
     @Default(DataType.UUIDV4)
     @Column({

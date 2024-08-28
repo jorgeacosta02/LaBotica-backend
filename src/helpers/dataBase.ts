@@ -68,7 +68,7 @@ const dataBase = async () => {
         {
             name: 'Artículo 1',
             description: 'descripción 1',
-            unit: 'grs.',
+            size: '100grs',
             price: '1000',
             stock: 100,
             active: true,
@@ -76,7 +76,7 @@ const dataBase = async () => {
         {
             name: 'Artículo 2',
             description: 'descripción 2',
-            unit: 'grs.',
+            size: '200grs',
             price: '2000',
             stock: 200,
             active: true,
@@ -84,7 +84,7 @@ const dataBase = async () => {
         {
             name: 'Artículo 3',
             description: 'descripción 3',
-            unit: 'grs.',
+            size: '300grs',
             price: '3000',
             stock: 300,
             active: true,
@@ -92,7 +92,7 @@ const dataBase = async () => {
         {
             name: 'Artículo 4',
             description: 'descripción 4',
-            unit: 'grs.',
+            size: '400grs',
             price: '4000',
             stock: 400,
             active: true,
@@ -100,7 +100,7 @@ const dataBase = async () => {
         {
             name: 'Artículo 5',
             description: 'descripción 5',
-            unit: 'grs.',
+            size: '500grs',
             price: '5000',
             stock: 500,
             active: true,
@@ -108,7 +108,7 @@ const dataBase = async () => {
         {
             name: 'Artículo 6',
             description: 'descripción 6',
-            unit: 'grs.',
+            size: '600grs',
             price: '6000',
             stock: 600,
             active: true,

@@ -8,15 +8,14 @@ const articleRegisterController = async (req: Request, res: Response) => {
     const {
         name,
         description,
-        unit,
+        size,
         price,
-        image,
         id,
     } = req.body;
 
     // validations    
     if(!name ) return res.status(400).json({msg: 'Por favor envíe nombre del producto.'});
-    if(!unit ) return res.status(400).json({msg: 'Por favor envíe unidad de medida del producto.'});
+    if(!size ) return res.status(400).json({msg: 'Por favor envíe medida del producto.'});
 
 
     // user check
@@ -44,9 +43,8 @@ const articleRegisterController = async (req: Request, res: Response) => {
         const newArticle = new ArticleModel ({
             name,
             description,
-            unit,
+            size,
             price,
-            image,
         });
         
         // Save the product and put it in a variable.

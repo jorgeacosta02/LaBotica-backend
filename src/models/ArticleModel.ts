@@ -29,7 +29,7 @@ import {
     description!: string;
 
     @Column
-    unit!: string;
+    size!: string;
 
     @Column
     price!: string;

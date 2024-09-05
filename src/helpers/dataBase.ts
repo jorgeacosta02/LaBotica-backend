@@ -15,7 +15,7 @@ const dataBase = async () => {
             address: 'dirección1',
             cp: '111',
             city: 'ciudad1',
-            country: 'país1',
+            // country: 'país1',
             password: '1',
             role: 'admin',
             active: true,

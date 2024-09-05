@@ -10,7 +10,8 @@ export interface IUserData extends Document {
     address: string;
     cp: string;
     city: string;
-    country: string;
+    province: string;
+    // country: string;
     password: string;
     active: boolean;
     role: string;
@@ -27,7 +28,8 @@ export interface IUserDataFromDB {
     address: string;
     cp: string;
     city: string;
-    country: string;
+    province: string;
+    // country: string;
     password: string;
     active: boolean;
     role: string;
@@ -43,7 +45,8 @@ export interface IRegisterData {
     address: string;
     cp: string;
     city: string;
-    country: string;
+    province: string;
+    // country: string;
     password: string;
     active: boolean;
     role: string;

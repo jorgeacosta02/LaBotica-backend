@@ -12,6 +12,10 @@ const userRegisterController = async (req: Request, res: Response) => {
         dni,
         phone,
         email,
+        address,
+        cp,
+        city,
+        province,
         password
     } = req.body;
 
@@ -51,6 +55,10 @@ const userRegisterController = async (req: Request, res: Response) => {
             dni,
             phone,
             email,
+            address,
+            cp,
+            city,
+            province,
             password: hash
         });
         

@@ -50,8 +50,8 @@ export class UserModel extends Model {
   @Column
   country!: string;
 
-  @Column
-  password!: string;
+  // @Column
+  // password!: string;
 
   @Column({
     type: DataType.STRING,

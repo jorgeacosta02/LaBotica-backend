@@ -7,9 +7,13 @@ export interface IUserData extends Document {
     dni: string;
     phone: string;
     email: string;
+    address: string;
+    cp: string;
+    city: string;
+    country: string;
     password: string;
-    role: string;
     active: boolean;
+    role: string;
 }
 
 // Interface user from db
@@ -20,9 +24,13 @@ export interface IUserDataFromDB {
     dni: string;
     phone: string;
     email: string;
+    address: string;
+    cp: string;
+    city: string;
+    country: string;
     password: string;
-    role: string;
     active: boolean;
+    role: string;
 }
 
 // Interface for register user
@@ -32,7 +40,13 @@ export interface IRegisterData {
     dni: string;
     phone: string;
     email: string;
+    address: string;
+    cp: string;
+    city: string;
+    country: string;
     password: string;
+    active: boolean;
+    role: string;
 }
 
 // LOGIN

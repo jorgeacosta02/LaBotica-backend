@@ -39,6 +39,18 @@ export class UserModel extends Model {
   email!: string;
 
   @Column
+  address!: string;
+
+  @Column
+  cp!: string;
+
+  @Column
+  city!: string;
+
+  @Column
+  country!: string;
+
+  @Column
   password!: string;
 
   @Column({

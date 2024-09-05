@@ -47,11 +47,11 @@ export class UserModel extends Model {
   @Column
   city!: string;
 
-  @Column
-  country!: string;
-
   // @Column
-  // password!: string;
+  // country!: string;
+
+  @Column
+  password!: string;
 
   @Column({
     type: DataType.STRING,
